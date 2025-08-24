@@ -442,7 +442,6 @@ RATE_LIMIT_MAX=100
 ### 💬 **Get Involved**
 
 - 🐙 **GitHub Discussions** - Ask questions & share ideas
--
 - 📧 **Email** - rayanshs372@gmail.com
 
 ### 🌟 **Contributors**
