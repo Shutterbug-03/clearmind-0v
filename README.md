@@ -442,9 +442,8 @@ RATE_LIMIT_MAX=100
 ### 💬 **Get Involved**
 
 - 🐙 **GitHub Discussions** - Ask questions & share ideas
-- 🐦 **Twitter** - Follow [@ClearMindAI](https://twitter.com/ClearMindAI)
-- 💬 **Discord** - Join our community server
-- 📧 **Email** - contact@clearmind.ai
+-
+- 📧 **Email** - rayanshs372@gmail.com
 
 ### 🌟 **Contributors**
 
