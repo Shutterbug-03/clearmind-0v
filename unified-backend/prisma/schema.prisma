@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Scan {
+  id         String   @id @default(cuid())
+  type       String   // 'text' | 'image' | 'video' | 'link'
+  inputLabel String
+  createdAt  DateTime @default(now())
+  confidence Int      // 0-100
+  flags      Json     // Array of detection flags
+  summary    String   // Human-readable summary
+}
