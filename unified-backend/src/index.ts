@@ -4,8 +4,7 @@ import cors from 'cors';
 import analyzeRouter from './routes/analyze';
 import scansRouter from './routes/scans';
 import summaryRouter from './routes/summary';
-import electionAnalysisRouter from './routes/election-analysis';
-import eciFactCheckRouter from './routes/eci-fact-check';
+import { apiKeyAuth } from './middleware/auth';
 
 const app = express();
 
@@ -15,16 +14,21 @@ const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:8080';
 app.use(cors({ origin: FRONTEND_ORIGIN }));
 app.use(express.json({ limit: '10mb' }));
 
+// Public health check endpoint
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.use('/api/analyze', analyzeRouter);
-app.use('/api/scans', scansRouter);
-app.use('/api/analyze', summaryRouter); // AI-powered summary generation
-app.use('/api/summary', summaryRouter); // Alternative route for summary
-app.use('/api/election', electionAnalysisRouter); // God-tier India election analysis
-app.use('/api/eci', eciFactCheckRouter); // ECI fact-checking and verification services
+// Protected API routes (auth disabled for development)
+const apiRouter = express.Router();
+// apiRouter.use(apiKeyAuth); // Disabled for development
+
+apiRouter.use('/analyze', analyzeRouter);
+apiRouter.use('/scans', scansRouter);
+apiRouter.use('/summary', summaryRouter);
+
+app.use('/api', apiRouter);
+
 
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('Unhandled error:', err);
